@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可自定义字幕的Gif表情在线生成器</title>
+</head>
+<body>
+	<!-- https://github.com/jnordberg/gif.js -->
+	<!-- http://www.zhangxinxu.com/wordpress/2018/05/js-custom-gif-generate/ -->
+	<script>
+var gif = new GIF({
+//   workers: 2,
+//   quality: 10
+// });
+
+// // 添加图片元素
+// gif.addFrame(imageElement);
+
+// // 或者是canvas元素
+// gif.addFrame(canvasElement, {delay: 200});
+
+// // 或者从canvas的上下文复制像素信息
+// gif.addFrame(ctx, {copy: true});
+
+// gif.on('finished', function(blob) {
+//   // 这里的blob就是gif图片blod格式信息
+//   window.open(URL.createObjectURL(blob));
+// });
+
+// gif.render();
+
+var gif = new GIF({
+    width: width,
+    height: height
+});
+// 画布元素
+var canvas = document.createElement('canvas');
+var context = canvas.getContext('2d');
+// 绘制图片
+context.drawImage(img, 0, 0);
+// 绘制文字
+context.fillText(message, width / 2, height - 32);
+// 作为帧插入GIF
+gif.addFrame(context, {
+    delay: delay,
+   copy: true
+});
+
+
+// //本地上传GIF帧图片如何处理的
+// var reader = new FileReader();
+// reader.onload = function(e) {
+//     // e.target.result就是图片的base64地址信息
+//     // 让img的src属性值为e.target.result图片即可呈现
+// }
+// reader.readAsDataURL(file);
+</script>
+</body>
+</html>

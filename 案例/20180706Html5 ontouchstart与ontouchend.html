@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html> 
+    <head> 
+       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+       <script type="text/javascript"> 
+   	   window.onload = function() {
+    		var friends = document.getElementsByClassName("friend");// 循环
+    		for(var i = 0; i < friends.length; i++) {    
+     			(function(i) {        
+      				friends[i].ontouchstart =function() {            
+          				this.style.backgroundColor ="red";        
+        			};        
+        			friends[i].ontouchend =function() {            
+        	 			this.style.backgroundColor ="white";       
+        			};    
+       			})(i);
+     		}
+  	   };
+       </script> 
+    </head> 
+    <body> 
+  	<div class="friend">好友A1244214214</div><br>
+  	<div class="friend">好友B4214214</div><br>
+  	<div class="friend">好友C4214214</div>
+    </body> 
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>
+            使用JS把文本内容作为html文件下载实例页面
+        </title>
+        <style>
+            textarea {
+    max-width: 600px;
+    width: 100%;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
+input[type="button"] {
+    font-size: 100%;
+    height: 36px;
+}
+        </style>
+    </head>
+    <body>
+        <div class="demo">
+            <textarea rows="11">
+                <!-- 内容 -->
+                <!DOCTYPE doctype html>
+                <html>
+                    <head>
+                        <meta charset="utf-8">
+                            <title>
+                                测试
+                            </title>
+                        </meta>
+                    </head>
+                    <body>
+                        <h1>
+                            测试
+                        </h1>
+                    </body>
+                </html>
+                <!-- 内容 end -->
+            </textarea>
+            <p>
+                <input type="button" value="作为test.html文件下载"/>
+            </p>
+        </div>
+        <script>
+            var eleTextarea = document.querySelector('textarea');
+var eleButton = document.querySelector('input[type="button"]');
+
+// 下载文件方法
+var funDownload = function (content, filename) {
+    var eleLink = document.createElement('a');
+    eleLink.download = filename;
+    eleLink.style.display = 'none';
+    // 字符内容转变成blob地址
+    var blob = new Blob([content]);
+    eleLink.href = URL.createObjectURL(blob);
+    // 触发点击
+    document.body.appendChild(eleLink);
+    eleLink.click();
+    // 然后移除
+    document.body.removeChild(eleLink);
+};
+
+if ('download' in document.createElement('a')) {
+    // 作为test.html文件下载
+    eleButton.addEventListener('click', function () {
+        funDownload(eleTextarea.value, 'test.html');    
+    });
+} else {
+    eleButton.onclick = function () {
+        alert('浏览器不支持');    
+    };
+}
+        </script>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+
+.normal {
+	padding: 0 10px
+}
+.wtable{
+}
+.wtable tr,.wtable th,.wtable td{font-family: 微软雅黑;font-size: 12px;}
+.wtable tr th{color: #6F7479;}
+.wtable tr td,.wtable tr td a{color: #6D757C;border: none;}
+.wtable th:last-child{text-align: center;}
+.wtable td:last-child{text-align: center;}
+.wtable tr:nth-child(odd){background-color:#F6FAFD}

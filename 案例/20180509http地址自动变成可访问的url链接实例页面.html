@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>http地址自动变成可访问的url链接实例页面</title>
+    <style type="text/css">
+    textarea {
+        font-size: 1em;
+        width: 500px;
+        height: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <textarea id="txt">
+        本文地址：http://www.zhangxinxu.com/wordpress/?p=288，您可以访问我的博客首页http://www.zhagxinxu.com/wordpress/查看更多精彩的文章！ 张鑫旭-鑫空间-鑫生活 2010-04-13
+    </textarea>
+    <p>
+        <button id="btn">点击转换</button>
+    </p>
+    <div id="show"></div>
+    <script type="text/javascript">
+    var $ = function(id) {
+        return document.getElementById(id);
+    };
+    $("btn").onclick = function() {
+        var v = $("txt").value;
+        var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+        v = v.replace(reg, "<a href='$1$2'>$1$2</a>").replace(/\n/g, "<br />");
+        $("show").innerHTML = v;
+    };
+    </script>
+</body>
+
+</html>

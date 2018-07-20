@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                Echart  Map
+            </title>
+        </meta>
+        <style type="text/css">
+        	*{padding: 0;margin: 0;}
+        	body,html,#map{
+        		position: absolute;left: 0;top: 0;bottom: 0;right: 0;background: #555;
+        		width: 100%;height: 100%;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div id="map"></div>
+    	<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js"></script>
+        <script type="text/javascript">
+        	   // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('map'));
+            var geoCoordMap = {
+				    "海门":[121.15,31.89],
+				    "鄂尔多斯":[109.781327,39.608266],
+				    "招远":[120.38,37.35],
+				    "舟山":[122.207216,29.985295],
+				    "齐齐哈尔":[123.97,47.33],
+				    "盐城":[120.13,33.38],
+				    "赤峰":[118.87,42.28],
+				    "青岛":[120.33,36.07],
+				    "乳山":[121.52,36.89],
+				    "金昌":[102.188043,38.520089],
+				    "泉州":[118.58,24.93],
+				    "莱西":[120.53,36.86],
+				    "日照":[119.46,35.42],
+				    "胶南":[119.97,35.88],
+				    "南通":[121.05,32.08],
+				    "拉萨":[91.11,29.97]
+				};
+				//这里是生成series的数据，将经纬度和value值映射起来，我根据这个方法，最后自己写了一个方法，生成同样格式的数据，实现了对value的屏蔽。
+				var convertData = function (data) {
+				    var res = [];
+				    for (var i = 0; i < data.length; i++) {
+				        var geoCoord = geoCoordMap[data[i].name];
+				        if (geoCoord) {
+				            res.push({
+				                name: data[i].name,
+				                value: geoCoord.concat(data[i].value)
+				            });
+				        }
+				    }
+				    return res;
+				};
+				var option = {
+				    backgroundColor: '#404a59',
+				    title: {
+				        text: '全国主要城市空气质量',
+				        subtext: 'data from PM25.in',
+				        sublink: 'http://www.pm25.in',
+				        x:'center',
+				        textStyle: {
+				            color: '#fff'
+				        }
+				    },
+				    tooltip: {
+				        trigger: 'item',
+				        formatter: function (params) {
+				            return params.name + ' : ' + params.value[2];
+				        }
+				    },
+				    legend: {
+				        orient: 'vertical',
+				        y: 'bottom',
+				        x:'right',
+				        data:['pm2.5'],
+				        textStyle: {
+				            color: '#fff'
+				        }
+				    },
+				    visualMap: {
+				        min: 0,
+				        max: 200,
+				        calculable: true,
+				        inRange: {
+				            color: ['#50a3ba', '#eac736', '#d94e5d']
+				        },
+				        textStyle: {
+				            color: '#fff'
+				        }
+				    },
+				    geo: {
+				        map: 'china',
+				        label: {
+				            emphasis: {
+				                show: false
+				            }
+				        },
+				        itemStyle: {
+				            normal: {
+				                areaColor: '#323c48',
+				                borderColor: '#111'
+				            },
+				            emphasis: {
+				                areaColor: '#2a333d'
+				            }
+				        }
+				    },
+				    series: [
+				        {
+				            name: 'pm2.5',
+				            type: 'scatter',
+				            coordinateSystem: 'geo',
+				            data: convertData([
+				                {name: "海门", value: 9},
+				                {name: "鄂尔多斯", value: 12},
+				                {name: "招远", value: 12},
+				                {name: "舟山", value: 12},
+				                {name: "齐齐哈尔", value: 14},
+				                {name: "盐城", value: 15},
+				                {name: "赤峰", value: 16},
+				                {name: "青岛", value: 18},
+				                {name: "乳山", value: 18},
+				                {name: "金昌", value: 19},
+				                {name: "泉州", value: 21},
+				                {name: "莱西", value: 21},
+				                {name: "日照", value: 21},
+				                {name: "胶南", value: 22},
+				                {name: "南通", value: 23},
+				                {name: "拉萨", value: 24}
+				            ]),
+				            symbolSize: 12,
+				            label: {
+				                normal: {
+				                    show: false
+				                },
+				                emphasis: {
+				                    show: false
+				                }
+				            },
+				            itemStyle: {
+				                emphasis: {
+				                    borderColor: '#fff',
+				                    borderWidth: 1
+				                }
+				            }
+				        }
+				    ]
+				}
+			// 使用刚指定的配置项和数据显示图表。
+          myChart.setOption(option);
+        </script>
+    </body>
+</html>

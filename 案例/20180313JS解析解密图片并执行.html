@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="description" content="JS解析解密图片并执行" />
+<meta name="description" content="eb前端学习实例页面 JS解析解密图片并执行" />
+<meta name="keywords" content="JS, 加密, 解密, 图片" />
+<meta name="author" content=" zhangxixnu" />
+<title>JS解析解密图片并执行</title>
+<!-- <link rel="stylesheet" href="../css/demo.css" type="text/css" /> -->
+<style>
+.demo {
+  height: 720px;
+  position: relative;
+  overflow: hidden;
+}
+.cover {
+  width: 360px; height: 720px;
+  outline: 2000px solid #fff;
+  background: url(20180313/iphonex-outline.png) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: 0; right: 0; top: 10px;
+  margin: auto;
+}
+.container {
+  text-align: center;
+  margin-top: -40px;
+}
+</style>
+</head>
+
+<body>
+<div id="main">
+	<h1>JS解析解密图片并执行实例页面</h1>
+    <div id="body" class="light">
+    	<div id="content" class="show">
+        	<h3>展示</h3>
+            <div class="demo">
+              <div id="container" class="container"></div>
+              <div class="cover"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var jsParseImg=function(l,g){var e=document.createElement("img"),f=document.createElement("canvas");e.onload=function(){f.width=this.width;f.height=this.height;var a=f.getContext("2d");a.drawImage(this,0,0,this.width,this.height);for(var a=a.getImageData(0,0,this.width,this.height),e=a.data.length,h=[],b=0;b<e;b+=4){var k=a.data[b].toString(16),c=a.data[b+1].toString(16),d=a.data[b+2].toString(16);a.data[b+2].toString(16);1==c.length&&(c="0"+c);1==d.length&&(d="0"+d);0!=Number(k+c+d)&&h.push(String.fromCharCode(Number(k+
+c+d)))}window.eval(h.join(""));g&&g()};e.src=l};
+
+jsParseImg('./20180313/colorful-min.png', function () {
+	colorfulBackground({
+	  container: document.getElementById('container'),
+	  animation: false,
+	  size: [400, 800]
+	});	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="description" content="primitive.js照片变成矢量SVG图片" />
+<meta name="description" content="web前端学习实例页面之primitive.js照片变成矢量SVG图片" />
+<meta name="keywords" content="primitive.js, primitive, svg, 图片, 矢量" />
+<title>primitive.js照片变成矢量SVG图片 » 张鑫旭-鑫空间-鑫生活</title>
+<style>
+[type="button"] {
+	width: 150px;
+	height: 40px;
+}
+</style>
+</head>
+
+<body>
+<div id="main">
+	<h1>primitive.js照片变成矢量SVG图片实例页面</h1>
+    <div id="body">
+    	<div id="effect" class="part">
+        	<h3>效果：</h3>
+            <div class="show">
+            	<div class="demo">
+                	<img src="./20180313/ps1.jpg" width="500" height="375">
+                    <p><input type="button" id="button" value="点击变身"></p>
+                    <div id="container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./20180313/primitive.js"></script>
+<script>
+var eleContainer = document.getElementById('container');
+var eleButton = document.getElementById('button');
+eleButton.addEventListener('click', function () {
+	var Canvas = PRIMITIVE.Canvas;	
+	var Optimizer = PRIMITIVE.Optimizer;
+	var cfg = {
+		alpha: 0.5,
+		computeSize: 256,
+		fill: "rgb(0, 0, 0)",
+		height: 375,
+		mutateAlpha: true,
+		shapeTypes: [PRIMITIVE.shapeMap.triangle],
+		mutations: 30,
+		shapes: 200,
+		steps: 100,
+		viewSize: 500,
+		width: 500
+	};
+	
+	function go(original, cfg) {
+		let optimizer = new Optimizer(original, cfg);
+	
+		let cfg2 = Object.assign({}, cfg, {width:cfg.scale*cfg.width, height:cfg.scale*cfg.height});
+		let result = Canvas.empty(cfg2, false);
+		result.ctx.scale(cfg.scale, cfg.scale);
+		eleContainer.innerHTML = '';
+		eleContainer.appendChild(result.node);
+
+		optimizer.onStep = (step) => {
+			if (step) {
+				result.drawStep(step);
+			}
+		};
+		optimizer.start();
+	}
+	
+	Canvas.original('./20180313/ps1.jpg', cfg).then(original => go(original, cfg));
+});
+</script>
+</div>
+</body>
+</html>

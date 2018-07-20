@@ -1,0 +1,352 @@
+模板字符串的简单实现：
+
+实现方法 render(tmpl, data)，将模板 tmpl 中的占位符，替换填充为 data 数据
+const tmpl = "I'm {{name}}. I'm {{age}} years old.";
+const data = { name: "Lucy", age: "23" };
+// --> const result = "I'm Lucy. I'm 23 years old.";
+版本一
+function render(tmpl, data) {
+    return tmpl.replace(/\{\{(.*?)\}\}/g, (match, key) => data[key.trim()]);
+}
+
+const result = render(tmpl, data);
+版本二
+String.prototype.render = function (data) {
+    return this.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()]);
+};
+
+const result = tmpl.render(data);
+
+-----------------------------------------------------------------------------
+
+通过 reduce 获取 URL参数：
+
+const getUrlParams = url => url.match(/([^?=&]+)(=([^&]*))/g).reduce((a, v) => (a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1), a), {}); 
+
+// getUrlParameters('http://api.com/relation?userIds=1,2,3&userType=student')
+
+
+
+-----------------------------------------------------------------------
+requestAnimationFrame 返回顶部
+
+const scrollToTop = () => {
+  const y = document.documentElement.scrollTop || document.body.scrollTop;
+  if (y > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    window.scrollTo(0, y - y / 8);
+  }
+};
+
+// scrollToTop()
+
+------------------------------------------------------------------------
+vm + calc && rem 自适应布局:
+
+html {
+    font-size: 16px;
+}
+
+@media screen and (min-width: 375px) {
+    html {
+        /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
+        font-size: calc(100% + 2 * (100vw - 375px) / 39);
+        font-size: calc(16px + 2 * (100vw - 375px) / 39);
+    }
+}
+@media screen and (min-width: 414px) {
+    html {
+        /* 414px-1000px每100像素宽字体增加1px(18px-22px) */
+        font-size: calc(112.5% + 4 * (100vw - 414px) / 586);
+        font-size: calc(18px + 4 * (100vw - 414px) / 586);
+    }
+}
+@media screen and (min-width: 600px) {
+    html {
+        /* 600px-1000px每100像素宽字体增加1px(20px-24px) */
+        font-size: calc(125% + 4 * (100vw - 600px) / 400);
+        font-size: calc(20px + 4 * (100vw - 600px) / 400);
+    }
+}
+@media screen and (min-width: 1000px) {
+    html {
+        /* 1000px往后是每100像素0.5px增加 */
+        font-size: calc(137.5% + 6 * (100vw - 1000px) / 1000);
+        font-size: calc(22px + 6 * (100vw - 1000px) / 1000);
+    }
+}
+
+----------------------------------------------------------------------------
+“随机数”函数的 ES6 实现:
+
+生成一个指定长度的数字数组
+const getNumArray = len => [...new Array(len).keys()];
+const getNumArray = len => Array.from({length: len}, (v, k) => k);
+
+随机从数组中获取一个元素
+const randomItem = items => items[Math.random() * items.length | 0];
+
+生成一个特定范围内的随机数
+const genRandom = (min, max) => (Math.random() * (max - min + 1) | 0) + min;
+
+随机打乱数组元素的顺序
+const shuffle = items => items.sort(() => Math.random() - 0.5)
+
+const shuffle = items => {
+    for (var i = items.length-1; i >=0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        [items[j], items[i]] = [items[i], items[j]];
+    }
+    return items;
+}
+
+生成一个随机的数字字母字符串
+
+const genRandomString = len => {
+    let rdmString = '';
+    while(rdmString.length < len) {
+        rdmString += (Math.random() * 37 | 0).toString(36);
+   }
+   return rdmString;
+}
+
+
+const genRandomString = len => {
+    const text = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    const rdmIndex = text => Math.random() * text.length | 0;
+    let rdmString = '';    
+    for(; rdmString.length < len; rdmString += text.charAt(rdmIndex(text)));
+    return rdmString;
+}
+-------------------------------------------------------------------------------
+npm 与 yarn 常用命令对比
+检查依赖是否可更新
+npm outdated [-g]
+yarn [global] outdated
+更新依赖包到最新版本
+npm update [-g]
+yarn [global] upgrade
+锁定依赖包版本号（生成 npm-shrinkwrap.json 文件）
+npm shrinkwrap
+yarn generate-lock-entry && yarn install
+固定依赖包版本号（修改 package.json 文件）
+npm config set save-prefix="~"
+npm config set save-exact true
+线上环境更新依赖包（仅安装 dependencies 里面的包）
+npm install --production
+yarn install --production
+安装 package.json 中所有依赖
+npm install
+yarn install
+安装生产依赖（指定版本）
+npm install --save lodash@4.17.2
+yarn add lodash@4.17.2
+安装开发依赖（指定版本）
+npm install --save-dev lodash@4.17.2
+yarn add lodash@4.17.2 --dev
+安装全局依赖（指定版本）
+npm install --global lodash@4.17.2
+yarn global add lodash@4.17.2
+卸载生产依赖
+npm uninstall --save lodash
+yarn remove lodash
+卸载开发依赖
+npm uninstall --save-dev lodash
+-yarn remove lodash --dev
+更新生产依赖
+npm update --save
+yarn upgrade
+升级全局依赖到最新版本
+npm update lodash -g
+yarn global upgrade webpack
+查看全局依赖包
+npm ls -g
+
+----------------------------------------------------------------------------------------
+除了 pull 和 push 你应该知道 git 的操作
+git 仓库简单示意图
+| 工作区(Working) | 暂存区(Staging) | 版本库(Local repo)| 远程仓库(Remote repo)|
+
+    |---- git add ---->|--- git commit --->|---- git push --->|
+    |----------- git commit -am  --------->|---- git push --->|
+    |<- git checkout --|<--- git reset ----|<--- git pull ----|
+    |<--------- git reset --hard HEAD -----|<--- git pull ----|
+与远程分支建立追踪关系(tracking)
+git branch --set-upstream master origin/master
+设置 rebase 让历史变得清晰
+git config --global branch.autosetuprebase always # 所有分支
+git config branch.master.rebase true # 指定分支
+查看 git 配置信息
+git config --list
+禁止终端显示中文文件名为 \xxx\xxx 形式
+git config --global core.quotepath false
+更美观的输出 log
+git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative -10
+git log
+查看简要的 log
+git log --oneline --5
+强制更新，覆盖本地修改
+git fetch --all
+git reset --hard origin/master
+操作撤销（还没有 push）
+git reset --soft 3ce07 # 回滚到多个提交之前，但保留没有提交的改变（不回滚工作区和缓存区）
+git reset --hard HEAD # 回滚到最近一次的提交（会回滚工作区和缓存区）
+操作撤销 （已经 push）
+git revert c011e # 用一个新提交来消除一个历史提交所做的修改
+版本撤销
+git log
+git reset --hard e54dd31
+修改 commit 注释
+git commit --amend -m "Fixes bug #42"
+版本恢复
+git reflog
+git reset --hard c80ae4f
+隐藏工作区
+git stash # 暂存改动（默认备注）
+git stash save "暂存头部样式修改" # 暂存改动，自定义备注
+git stash list # 查看暂存的改动列表
+git stash pop --index stash@{0} # 释放指定暂存项
+git stash pop # 释放全部暂存的改动
+git stash drop # 删除暂存的改动
+查看修改日志
+git log --author=yida # 查看特定成员的更新记录
+git log --grep="等待页面" # 按关键字搜索更新记录
+git log ./package.json # 查看指定文件的更改日志
+打 Tag 操作
+git tag v0.9 # 在 HEAD 打"轻 tag"
+git tag -am "xxx" v0.9 # 在 HEAD 打"注解 tag"
+git tag v0.9 a032c # 在指定提交打"轻 tag"
+git tag -a v0.1 -m "xxx" a032c # 在指定提交打"注解 tag"
+git tag # 查看打过的 tag
+git tag -n # 查看打过的 tag 及注解
+git push origin v1.0 # 将 tag 推送到远程
+git push origin --tags # 推送全部尚未推送到远程的 tag
+git tag -d v0.9 # 删除本地 tag
+git push origin :refs/tags/v0.9 # 从远程删除 tag
+基于某个 tag 创建新分支
+假设在你的主分支上有一个 tag 为 v1.0 , 主分支的名字为 master:
+git branch new_branch v1.0 # 以 tag v1.0 创建新的分支 newbranch
+git checkout new_branch # 切换到分支 newbranch
+git push origin new_branch # 把本地 newbranch 分支提交到远程仓库
+添加忽略文件
+echo '*~' >> .gitignore
+git add .gitignore
+添加全局忽略文件
+git config --global core.excludesfile ~/.gitignore_global
+vim ~/.gitignore_global
+加入要忽略的文件名
+Git 使用问题
+问题1：怎样设置 git 操作免输账号密码？
+在主文件夹下创建文件 .git-credentials, 用vim编辑：
+cd ~
+touch .git-credentials
+vim .git-credentials
+在 .git-credentials 添加 https://{username}:{password}@github.com，例如：
+https://yida:pass123@github.com
+在终端下执行命令：
+git config --global credential.helper store
+查看到 ~/.gitconfig 文件新加入一项配置：
+[credential]
+helper = store
+以后 git 操作就不再需要密码验证
+问题2：怎样设置 git 忽略已经被提交的文件？
+git update-index --assume-unchanged .ftpconfig # 忽略跟踪 .ftpconfig
+git update-index --no-assume-unchanged .ftpconfig # 恢复跟踪 .ftpconfig
+git ls-files -v | grep -e "^[hsmrck]" # 查看当前被忽略、已经纳入版本库管理的文件
+问题3： 如何把在本地 A 分支上的一个 commit（7b31b7）放到本地 B 分支上？
+git checkout B
+git cherry-pick 7b31b7
+问题4. 查看谁弄乱了文件 index.php 的代码？
+git blame index.php
+问题5. 怎样恢复丢失的提交？
+git reflog # 查看该所有操作日志 -- 例如,丢失的提交信息如下:
+# 794b305 HEAD@{24}: rebase: 修改开户状态相关
+git branch recover-branch 794b305 # 在丢失的 commit(794b305) 上创建一个新分支, 即可恢复此次提交
+
+
+---------------------------------------------------------------------------------------------
+前端除了 cd 和 ls 还应该知道的 CLI 操作
+有时前端需要自己去 Linux 系统测试机进行一些简单操作。除了 cd 和 ls 命令，还有一些常用的命令行操作。分享一些使用频率较高的简单命令，方便大家查阅使用
+列出所有文件（包括隐藏文件）
+ls -al
+检查进程是否存在
+ps aux | grep nginx
+或
+ps -ef | grep nginx # mac 下不可用
+查看端口是否占用
+ps aux | grep :8000
+或
+netstat -pan | grep :8000 # mac 下不可用
+或
+lsof -i :3000 # 前提是系统中已安装 lsof
+释放端口
+kill -9 端口占用的进程号
+或
+kill `lsof -t -i :8000`  # 前提是系统中已安装 lsof
+监控打印日志文件内容
+tail -f ./logs/django.log
+查看本机 IP
+ifconfig | grep "inet " | grep -v 127.0.0.1
+新建文件
+touch 文件名
+新建目录
+mkdir 目录 # 新建空目录
+mkdir -p 目录1/目录2 # 新建多层目录
+删除目录/文件
+rm -rf 目录/文件名
+复制文件
+cp 源文件路径 目标路径 -R
+重命名文件
+mv 原文件名 新文件名
+批量查找文件
+sudo find ./ -name '*.log'
+批量删除文件
+sudo find ./ -name '*.log' | xargs sudo rm -rf
+修改文件权限
+chmod u+x 文件名 # 为 [当前用户] 设置文件 [执行] 权限
+chmod g+x 文件名 # 为 [同组用户] 设置文件 [执行] 权限
+chmod o+x 文件名 # 为 [其他组用户] 设置文件 [执行] 权限
+chmod o+w,o+x 文件名 # 为 [其他组用户] 设置文件 [写、执行] 权限
+chmod a+w,a+x 文件名 # 为 [所有用户] 设置文件 [写、执行] 权限
+chmod 777 目录 -R # 赋予目录及其所有子目录和文件全部权限
+修改文件所有者
+chown 用户名 文件名 # 修改文件所有者
+chown 用户名.所在组 文件名 # 同时修改文件所有者和所在分组
+chown 用户名.所在组 目录 -R # 递归修改目录所有者和组的信息
+设置软链接（相当于 Windows 快捷方式）
+ln -s 源文件路径 软链接路径
+打包压缩
+tar -cvf jpg.tar *.jpg # 将目录里所有 jpg 文件打包
+tar -czf jpg.tar.gz *.jpg # 将目录里所有 jpg 文件打包并压缩
+解压
+tar -xvf file.tar # 解压 tar 包
+tar -xzvf file.tar.gz # 解压 tar.gz 包
+Linux 终端快捷键
+移动光标
+Ctrl + a # 移到行首
+Ctrl + e # 移到行尾
+Esc + b： # 向前移动一个单词
+Esc + f： # 向后移动一个单词
+删除字符
+Ctrl + h # 删除光标前的一个字符
+Ctrl + d # 删除光标后的一个字符
+删除单词
+Esc + d # 由光标位置开始，向后删除一个单词
+Ctrl + w # 由光标位置开始，向前删除一个单词
+删除行部分
+Ctrl + k # 由光标位置开始，向后删除所有字符
+Ctrl + u # 由光标位置开始，向前删除所有字符
+删除整行
+Ctrl + a + k
+清除屏幕
+Ctrl + l
+强制终止当前进程
+Ctrl + c
+
+-----------------------------------------------------------------------
+
+
+
+作者： 王益达 
+链接：http://www.imooc.com/article/23772
+来源：慕课网

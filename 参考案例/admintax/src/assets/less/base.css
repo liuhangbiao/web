@@ -1,0 +1,303 @@
+@charset "utf-8";
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
+body{background:#fff;}
+a,a:hover{color:#333;}
+/* function */
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+.f-ib{display:inline-block;*display:inline;*zoom:1;}
+.f-dn{display:none;}
+.f-db{display:block;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-pr{position:relative;}
+.f-prz{position:relative;zoom:1;}
+.f-ps{position: static;}
+.f-pa{position: absolute;}
+.f-pf{position: fixed; }
+.f-oh{overflow:hidden;}
+.f-ff0{font-family:arial,\5b8b\4f53;}
+.f-ff1{font-family:"Microsoft YaHei",\5fae\8f6f\96c5\9ed1,arial,\5b8b\4f53;}
+.f-fs1{font-size:12px;}
+.f-fs2{font-size:14px;}
+.f-fwn{font-weight:normal;}
+.f-fwb{font-weight:bold;}
+.f-tal{text-align:left;}
+.f-tac{text-align:center;}
+.f-tar{text-align:right;}
+.f-taj{text-align:justify;text-justify:inter-ideograph;}
+.f-vam,.f-vama *{vertical-align:middle;}
+.f-wsn{word-wrap:normal;white-space:nowrap;}
+/* 保持空白序列*/
+.f-pre{overflow:hidden;text-align:left;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;}
+.f-wwb{white-space:normal;word-wrap:break-word;word-break:break-all;}
+.f-ti{overflow:hidden;text-indent:-30000px;}
+.f-ti2{text-indent:2em;}
+.f-lhn{line-height:normal;}
+.f-tdu,.f-tdu:hover{text-decoration:underline;}
+.f-tdn,.f-tdn:hover{text-decoration:none;}
+ /* 多出部分用省略号表示 , 用于一行 */
+.f-toe{overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;}
+.f-txt{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+/*
+normal  默认。空白会被浏览器忽略。
+pre 空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。
+nowrap  文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+pre-wrap    保留空白符序列，但是正常地进行换行。
+pre-line    合并空白符序列，但是保留换行符。
+inherit 规定应该从父元素继承 white-space 属性的值。*/
+/* 鼠标样式 */
+.f-csp { cursor: pointer; }
+.f-csd { cursor: default; }
+.f-csh { cursor: help; }
+.f-csm { cursor: move; }
+/* 禁止选中文本 */
+.f-usn { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; }
+/* 溢出样式 */
+.f-ofh { overflow: hidden; }
+.f-ofs { overflow: scroll; }
+.f-ofa { overflow: auto; }
+.f-ofv { overflow: visible; }
+/* 垂直对齐方式 */
+.f-vat { vertical-align: top; }
+.f-vab { vertical-align: bottom; }
+
+.wes { /* 多出部分用省略号表示 , 用于一行 */
+overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; }
+.wes-2 { /* 适用于webkit内核和移动端 */
+display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.wes-3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.wes-4 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+/*取消按钮在inphone上的默认样式*/
+input[type=button]{-webkit-appearance:none;outline:none}
+input::-webkit-input-placeholder{color:#F0F0F0;}
+textarea::-webkit-input-placeholder{color:#F0F0F0;}
+input::-webkit-input-speech-button{display:none}
+table{border-collapse:collapse;border-spacing:0;}
+th{text-align:inherit;}
+fieldset,img{border:none;}
+abbr,acronym{border:none;font-variant:normal;}
+del{text-decoration:line-through;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
+sup{top:-0.5em;}
+sub{bottom:-0.25em;}
+ins,a,a:hover{text-decoration:none;}
+a:focus,*:focus{outline:none;}
+input::-webkit-input-placeholder {
+	color: #b2b2b2;
+}
+input:-ms-input-placeholder { // IE10+
+	color: #b2b2b2;
+}
+input:-moz-placeholder { // Firefox4-18
+	color: #b2b2b2;
+}
+input::-moz-placeholder { // Firefox19+
+	color: #b2b2b2;
+}
+.clearfix:before,.clearfix:after{content:"";display:table;}
+.clearfix:after{clear:both;overflow:hidden;}
+.clearfix{zoom:1;}
+.clear{clear:both;display:block;font-size:0;height:0;line-height:0;overflow:hidden;}
+.outL{white-space:normal;word-break:break-all;width:100px;}
+.outH{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100px;}
+/*布局*/
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;}
+/*网格*/
+.box{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;height:100%;text-align:center;padding:5px 0;}
+.grid,.wrap,.grid:after,.wrap:after,.grid:before,.wrap:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.grid{*zoom:1}
+.grid:before,.grid:after{display:table;content:"";line-height:0}
+.grid:after{clear:both}
+.grid{list-style-type:none;padding:0;margin:0}
+.grid>.grid{clear:none;float:left;margin:0!important}
+/*flex*/
+.col{height:100%;display:-webkit-box;-webkit-box-orient:vertical;display:flex;display:-webkit-flex;flex-direction:column;}
+.row{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;flex-direction:wrap;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-lines:multiple;width:100%;height:auto;margin:auto;}
+.flex1{-webkit-box-flex:1;-webkit-flex:1;flex:1;}
+.flex2{-webkit-box-flex:2;-webkit-flex:2;flex:2;}
+.flex3{-webkit-box-flex:3;-webkit-flex:3;flex:3;}
+/*容器*/
+.wrapper{position:absolute;top:0;right:0;bottom:0;left:0;padding:5px 5px 60px 5px;overflow:auto;margin-top:44px;-webkit-overflow-scrolling:touch;}
+/*头尾*/
+header,footer{position:fixed;right:0;left:0;z-index:1;text-align:center;background:#CCCCCC;}
+header{top:0;height:44px;}
+footer{bottom:0;}
+/*宽度*/
+.w100p { width: 100% }
+.w20p { width: 20%; }
+/*边距*/
+.m5 { margin: 5px; }
+.p5 { padding: 5px; }
+.pt5 { padding-top: 5px; }
+.m0a{margin: 0 auto;}
+
+.pd-5{padding: 5px;}
+.pd-10{padding: 10px;}
+.pd-15{padding: 15px;}
+.pd-20{padding: 20px;}
+.pd-25{padding: 25px;}
+.pd-30{padding: 30px;}
+.pd-40{padding: 40px;}
+.pd-50{padding: 50px;}
+.pd-100{padding: 100px;}
+.pdl-5{padding-left: 5px;}
+.pdl-10{padding-left: 10px;}
+.pdl-15{padding-left: 15px;}
+.pdl-20{padding-left: 20px;}
+.pdl-25{padding-left: 25px;}
+.pdl-30{padding-left: 30px;}
+.pdl-40{padding-left: 40px;}
+.pdl-50{padding-left: 50px;}
+.pdl-100{padding-left: 100px;}
+.pdr-5{padding-right: 5px;}
+.pdr-10{padding-right: 10px;}
+.pdr-15{padding-right: 15px;}
+.pdr-20{padding-right: 20px;}
+.pdr-25{padding-right: 25px;}
+.pdr-30{padding-right: 30px;}
+.pdr-40{padding-right: 40px;}
+.pdr-50{padding-right: 50px;}
+.pdr-100{padding-right: 100px;}
+.pdt-5{padding-top: 5px;}
+.pdt-10{padding-top: 10px;}
+.pdt-15{padding-top: 15px;}
+.pdt-20{padding-top: 20px;}
+.pdt-25{padding-top: 25px;}
+.pdt-30{padding-top: 30px;}
+.pdt-40{padding-top: 40px;}
+.pdt-50{padding-top: 50px;}
+.pdt-90{padding-top: 90px;}
+.pdt-100{padding-top: 100px;}
+.pdb-5{padding-bottom: 5px;}
+.pdb-10{padding-bottom: 10px;}
+.pdb-15{padding-bottom: 15px;}
+.pdb-20{padding-bottom: 20px;}
+.pdb-25{padding-bottom: 25px;}
+.pdb-30{padding-bottom: 30px;}
+.pdb-40{padding-bottom: 40px;}
+.pdb-50{padding-bottom: 50px;}
+.pdb-100{padding-bottom: 100px;}
+
+.mg-5{margin: 5px;}
+.mg-10{margin: 10px;}
+.mg-15{margin: 15px;}
+.mg-20{margin: 20px;}
+.mg-25{margin: 25px;}
+.mg-30{margin: 30px;}
+.mg-50{margin: 50px;}
+.mg-100{margin: 100px;}
+.mgl-5{margin-left: 5px;}
+.mgl-10{margin-left: 10px;}
+.mgl-15{margin-left: 15px;}
+.mgl-20{margin-left: 20px;}
+.mgl-25{margin-left: 25px;}
+.mgl-30{margin-left: 30px;}
+.mgl-40{margin-left: 40px;}
+.mgl-50{margin-left: 50px;}
+.mgl-100{margin-left: 100px;}
+.mgr-5{margin-right: 5px;}
+.mgr-10{margin-right: 10px;}
+.mgr-15{margin-right: 15px;}
+.mgr-20{margin-right: 20px;}
+.mgr-25{margin-right: 25px;}
+.mgr-30{margin-right: 30px;}
+.mgr-50{margin-right: 50px;}
+.mgr-100{margin-right: 100px;}
+.mgt-5{margin-top: 5px;}
+.mgt-10{margin-top: 10px;}
+.mgt-15{margin-top: 15px;}
+.mgt-20{margin-top: 20px;}
+.mgt-25{margin-top: 25px;}
+.mgt-30{margin-top: 30px;}
+.mgt-50{margin-top: 50px;}
+.mgt-100{margin-top: 100px;}
+.mgb-5{margin-bottom: 5px;}
+.mgb-10{margin-bottom: 10px;}
+.mgb-15{margin-bottom: 15px;}
+.mgb-20{margin-bottom: 20px;}
+.mgb-25{margin-bottom: 25px;}
+.mgb-30{margin-bottom: 30px;}
+.mgb-50{margin-bottom: 50px;}
+.mgb-100{margin-bottom: 100px;}
+/* 元素类型 */
+.transparent { opacity: 0 }
+/* flex布局 */
+.df-sb { display: flex; align-items: center; justify-content: space-between; }
+.df-sa { display: flex; align-items: center; justify-content: space-around; }
+/* 垂直居中 */
+.df-c{display:flex;align-items:center;justify-content:center;}
+.tb-c{display:table-cell;text-align:center;vertical-align:middle;}
+.ts-c{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ts-mc{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;}
+/* 辅助 */
+.mask-fixed-wrapper{position:fixed;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.65);}
+.bg-cover{background-repeat:no-repeat;background-position:center center;background-size:cover;}
+.bg-cover-all{background-repeat:no-repeat;background-position:center center;background-size:100% 100%;}
+/* media */
+/* 横屏 */
+@media screen and (orientation:landscape){
+}
+/* 竖屏 */
+@media screen and (orientation:portrait){
+}
+/* 窗口宽度<960,设计宽度=768 */
+@media screen and (max-width:959px){
+}
+/* 窗口宽度<768,设计宽度=640 */
+@media screen and (max-width:767px){
+}
+/* 窗口宽度<640,设计宽度=480 */
+@media screen and (max-width:639px){
+}
+/* 窗口宽度<480,设计宽度=320 */
+@media screen and (max-width:479px){
+}
+/* windows UI 贴靠 */
+@media screen and (-ms-view-state:snapped){
+}
+/* 打印 */
+@media print{
+}
+/* animation */
+/* 淡入 */
+.a-fadein{-webkit-animation-name:fadein;-moz-animation-name:fadein;-ms-animation-name:fadein;animation-name:fadein;}
+/* define */
+/* 淡入 */
+@-webkit-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@-moz-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@-ms-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}

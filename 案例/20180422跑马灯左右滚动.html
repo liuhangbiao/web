@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id=roll1 style="overflow:hidden; width:1200px;">
+      <table>
+          <tr>
+              <td id="rollleft1">
+                  <table>
+                      <tr>
+                          <td><img src="http://117.78.26.133/group1/M00/00/00/wKgABlrZsJSAGOn7AACo6hqpHyI655.png"></td>
+                          <td><img src="http://117.78.26.133/group1/M00/00/00/wKgABlrZsBSAd6A2AADdwNrd8qQ728.png"></td>
+                          <td><img src="http://117.78.26.133/group1/M00/00/00/wKgABlrZsJSAGOn7AACo6hqpHyI655.png"></td>
+                          <td><img src="http://117.78.26.133/group1/M00/00/00/wKgABlrZsBSAd6A2AADdwNrd8qQ728.png"></td>
+                      </tr>
+                  </table>
+              </td>
+              <td id="rollright1"> </td>
+          </tr>
+      </table>
+    </div>
+    <script type="text/javascript">
+        
+        var speed1 = 22
+        rollright1.innerHTML = rollleft1.innerHTML
+
+        function Marquee1() {
+            if (rollright1.offsetWidth - roll1.scrollLeft <= 0)
+                roll1.scrollLeft -= rollleft1.offsetWidth
+            else {
+                roll1.scrollLeft++
+            }
+        }
+        var MyMar1 = setInterval(Marquee1, speed1)
+        roll1.onmouseover = function() { clearInterval(MyMar1) }
+        roll1.onmouseout = function() { MyMar1 = setInterval(Marquee1, speed1) }
+    </script>
+</body>
+
+</html>

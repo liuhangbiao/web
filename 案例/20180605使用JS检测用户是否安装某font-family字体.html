@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                使用JS检测用户是否安装某font-family字体
+            </title>
+        </meta>
+    </head>
+    <body>
+        <h1>
+            windows 检测
+        </h1>
+        <div class="demo" id="result">
+        </div>
+        <h1>
+            office 检测
+        </h1>
+        <div class="demo" id="result1">
+        </div>
+        <script type="text/javascript">
+            // var isSupportFontFamily=function(f){if(typeof f!="string"){return false}var h="Arial";if(f.toLowerCase()==h.toLowerCase()){return true}var e="a";var d=100;var a=100,i=100;var c=document.createElement("canvas");var b=c.getContext("2d");c.width=a;c.height=i;b.textAlign="center";b.fillStyle="black";b.textBaseline="middle";var g=function(j){b.clearRect(0,0,a,i);b.font=d+"px "+j+", "+h;b.fillText(e,a/2,i/2);var k=b.getImageData(0,0,a,i).data;return[].slice.call(k).filter(function(l){return l!=0})};return g(h).join("")!==g(f).join("")};
+            // // isSupportMicrosoftYahei为true或者false
+            // var isSupportMicrosoftYahei = isSupportFontFamily('Microsoft Yahei');
+
+            var isSupportFontFamily = function (fontFamily) {
+    if (typeof fontFamily != 'string') {
+        return false;
+    }
+
+    var defaultFontFamily = 'Arial';
+    if (fontFamily.toLowerCase() == defaultFontFamily.toLowerCase()) {
+        return true;
+    }
+
+    var defaultLetter = 'a';
+    var defaultFontSize = 100;
+
+    // 使用该字体绘制的canvas
+    var width = 100, height = 100;
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    canvas.width = width;
+    canvas.height = height;
+    // 全局一致的绘制设定
+    context.textAlign = 'center';
+    context.fillStyle = 'black';
+    context.textBaseline = 'middle';
+    var getFontData = function (fontFamily) {
+        // 清除
+        context.clearRect(0, 0, width, height);
+        // 设置字体
+        context.font = defaultFontSize + 'px ' + fontFamily + ', ' + defaultFontFamily;
+        context.fillText(defaultLetter, width / 2, height / 2);
+
+        var data = context.getImageData(0, 0, width, height).data;
+
+        return [].slice.call(data).filter(function(value) {
+            return value != 0;
+        });
+    };
+
+    return getFontData(defaultFontFamily).join('') !== getFontData(fontFamily).join('');
+};
+        </script>
+        <script src="./20180605/font-ch-en.js">
+        </script>
+        <script>
+            var eleResult = document.getElementById('result');
+var eleResult1 = document.getElementById('result1');
+// var arrFont = dataFont['OS X'];
+var arrFont = dataFont['windows'];
+var arrFont1 = dataFont['office'];
+arrFont.forEach(function (obj) {
+    var fontFamily = obj.en;
+
+    eleResult.innerHTML = eleResult.innerHTML + '<p style="font-family:'+ fontFamily +';">'+ (isSupportFontFamily(fontFamily) ? '是' : '否') +'：'+ obj.ch +'</p>';
+});
+arrFont1.forEach(function (obj) {
+    var fontFamily = obj.en;
+
+    eleResult1.innerHTML = eleResult.innerHTML + '<p style="font-family:'+ fontFamily +';">'+ (isSupportFontFamily(fontFamily) ? '是' : '否') +'：'+ obj.ch +'</p>';
+});
+        </script>
+    </body>
+</html>

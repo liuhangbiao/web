@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Border Animation with SVG</title>
+  <style type="text/css">
+    div {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      background: #ddd;
+    }
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    svg line {
+      stroke-width: 10;
+      stroke: #000;
+      fill: none;
+      stroke-dasharray: 200;
+      -webkit-transition: all .6s;
+      transition: transform .6s;
+    }
+    div:hover svg line.top {
+      -webkit-transform: translateX(-400px);
+      transform: translateX(-400px);
+    }
+    div:hover svg line.bottom {
+      -webkit-transform: translateX(400px);
+      transform: translateX(400px);
+    }
+    div:hover svg line.left {
+      -webkit-transform: translateY(400px);
+      transform: translateY(400px);
+    }
+    div:hover svg line.right {
+      -webkit-transform: translateY(-400px);
+      transform: translateY(-400px);
+    }
+  </style>
+</head>
+<body>
+  <div>
+      <svg width="200" height="200">
+          <line class="top" x1="0" y1="0" x2="600" y2="0"/>
+          <line class="left" x1="0" y1="200" x2="0" y2="-400"/>
+          <line class="bottom" x1="200" y1="200" x2="-400" y2="200"/>
+          <line class="right" x1="200" y1="0" x2="200" y2="600"/>
+      </svg>
+  </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+@import './base.css';
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 "Microsoft YaHei","\5fae\8f6f\96c5\9ed1",arial;}
+html,body{height: 100%;}
+body{
+	background: #fff;
+	font-family:"Microsoft YaHei","\5fae\8f6f\96c5\9ed1",arial;
+    overflow: hidden;
+
+  /* font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif!important;
+    font-size: 13px;
+    line-height: 1.42857143;
+    background: #cad1dc;
+    color: #767676;*/
+}
+
+
+/*less 工具*/
+.animation(@arguments) {
+    -webkit-animation: @arguments;
+    -moz-animation: @arguments;
+    animation: @arguments;
+}
+.animation-play-state(@arguments){
+    -webkit-animation-play-state:@arguments;
+    -moz-animation-play-state:@arguments;
+    animation-play-state:@arguments;
+}
+.keyframes(@name; @arguments) {
+    @-moz-keyframes @name { @arguments(); }
+    @-webkit-keyframes @name { @arguments(); }
+    @keyframes @name { @arguments(); }
+}
+
+/* 边角 */
+.border-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+.backgroundSize(@size:contain){
+    -webkit-background-size: @size; // 某些android 例如 Ophone 要加上 -webkit 的前缀
+       -moz-background-size: @size;
+          -ms-background-size: @size;
+           -o-background-size: @size;
+            background-size: @size;
+}
+/*
+    盒子阴影
+    @right_left 右边阴影为正数 左边负数
+    @bottom_top 下边阴影为正数 上边负数
+    @box 阴影大小
+    @box_color 阴影颜色
+*/
+.boxshadow(@right_left:5px, @bottom_top:5px, @box:5px, @box_color:gray){
+   -webkit-box-shadow: @arguments;
+      -moz-box-shadow: @arguments;
+       -ms-box-shadow: @arguments;
+        -o-box-shadow: @arguments;
+           box-shadow: @arguments;
+}
+
+/*
+    文字阴影,可以指定多组阴影
+    @right_left1 右边阴影为正数 左边负数
+    @bottom_top1 下边阴影为正数 上边负数
+    @text 阴影大小
+    @text_color 阴影颜色
+*/
+.textshadow(@right_left1:5px, @bottom_top1:5px, @text:5px, @tetx_color:#b6ebf7){
+    text-shadow:@arguments;
+}
+.transition(@t){
+    -webkit-transition: @t;
+      -moz-transition: @t;
+       -ms-transition: @t;
+       -o-transition: @t;
+         transition: @t;
+}
+/* 过渡 */
+.transition (@prop: all, @time: 1s, @ease: linear) {
+    -webkit-transition: @prop @time @ease;
+    -moz-transition: @prop @time @ease;
+    -o-transition: @prop @time @ease;
+    -ms-transition: @prop @time @ease;
+    transition: @prop @time @ease;
+}
+/* 旋转 */
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+    -webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    -moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    -o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    -ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+    transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+
+/*
+    区域内局部滚动
+    控制元素在移动设备上是否使用滚动回弹效果.
+    看上去和原生app的效率都有得一拼，要实现这个效果很简单，只需要加一行css代码即可：-webkit-overflow-scrolling : touch;
+    结构如下，必须三层
+    div.areaScroll > ul > li
+*/
+.areaScroll(@direct: hoz){
+    -webkit-overflow-scrolling : touch;
+    overflow : hidden;
+
+    /* overflow-x|y : auto;  */
+    & when (@direct = hoz) {
+        overflow-x : auto;
+        white-space:nowrap;
+    }
+    & when (@direct = v) {
+        overflow-y : auto;
+    }
+    &>ul{
+        &>li{
+            float: none; /* 不能 float:left */
+            display:inline-block;
+        }
+    }
+}
+
+::-webkit-scrollbar {/*隐藏滚轮*/
+    display: none;
+}

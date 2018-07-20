@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js 极简菜单</title>
+    <style type="text/css">
+    /*// 遮挡部分CSS*/
+
+    #modelDiv {
+        height: 100%;
+        width: 100%;
+        /*// 页面定位到最上面*/
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: silver;
+        /*// 透明度这样能看到后面的内容效果真实一些*/
+        opacity: 0.8;
+        /*// 遮挡级别最好高一些，防止别的内容会突然出现在你的弹出层上面，这就尴尬了。*/
+        z-index: 99;
+    }
+    /*// 弹出框内容CSS*/
+
+    #model {
+        width: 300px;
+        height: 200px;
+        background: #959FA9;
+        border-radius: 10px;
+        padding: 15px;
+        position: absolute;
+        top: 200px;
+        left: 42%;
+        z-index: 99;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 这个是用来遮罩的 -->
+    <div id="modelDiv">
+    </div>
+    <!-- 这个是用来展示弹框内容的 -->
+    <div id="model">
+        <div style="float: right;height: 20px; width: 20px;border-radius: 50%; border: 2px solid red;text-align: center;" onclick="closeModel()">
+            X
+        </div>
+        弹出窗口
+    </div>
+    <script type="text/javascript">
+    // 页面一进入就打开了弹出框。所以直接遮挡
+    // 此处是用来解决如果你的页面过大会出现滚动条，这样遮罩层只能遮挡你的可见部分滚动内容无法折腾的问题。
+    document.body.style.overflow = 'hidden';
+    /**
+     * 关闭弹出框的功能
+     */
+    function closeModel() {
+        document.getElementById("model").style.display = 'none';
+        document.getElementById("modelDiv").style.display = 'none';
+        // 不遮挡后面的内容将body设置为原始样式，也就是实现可滚动
+        document.body.style.overflow = 'auto';
+    }
+    </script>
+</body>
+
+</html>

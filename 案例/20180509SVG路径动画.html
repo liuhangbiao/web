@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SVG路径动画</title>
+</head>
+<body>
+<svg viewBox="0 0 2706 2048" width="120" height="66" class="svg-hand">
+    <g id="hand">
+        <!--手上的圆圏-->
+        <circle cx="370" cy="90" r="210" fill="red"></circle>
+        <!--手的形状-->
+        <path d="..."></path>
+    </g>
+    <!--动画路径-->
+    <path id="animation-hand-arc" d="M-514,665c0,0,1378.463-1138.762,2891,0" stroke="transparent" fill="transparent"/>
+    <!--动画设置-->
+    <animateMotion id="arcmove" xlink:href="#hand" dur="1s" begin="0" fill="freeze" repeatCount="1">
+        <mpath xlink:href="#animation-hand-arc" />
+    </animateMotion>
+</svg>
+
+
+
+
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="500px" height="500px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<path d="M-514,665c0,0,1378.463-1138.762,2891,0"/>
+</svg>
+
+
+<svg viewBox="0 0 2706 2048" width="120" height="66" class="svg-hand">
+    <!--一开始是不可见的-->
+    <g id="hand" visibility="hidden">
+        <!--手上的圆圏-->
+        <circle cx="370" cy="90" r="210" fill="yellow"></circle>
+        <!--手的形状-->
+        <path d="..."></path>
+        <!--动画开始后设置成可见-->
+        <set attributeName="visibility" from="hidden" to="visible" begin="arcmove.begin"/>
+    </g>
+    <!--动画路径-->
+    <path id="animation-hand-arc" d="M-514,665c0,0,1378.463-1138.762,2891,0" stroke="transparent" fill="transparent"/>
+    <!--动画设置-->
+    <animateMotion id="arcmove" xlink:href="#hand" dur="1s" begin="0.5s" fill="freeze" repeatCount="1">
+        <mpath xlink:href="#animation-hand-arc" />
+    </animateMotion>
+</svg>
+</body>
+</html>

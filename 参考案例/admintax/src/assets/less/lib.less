@@ -1,0 +1,100 @@
+@base: #f938ab;
+
+@nice-blue: #5B83AD;
+@light-blue: @nice-blue + #111;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  box-shadow:         @style @c;
+  -webkit-box-shadow: @style @c;
+  -moz-box-shadow:    @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}
+
+/* 圆角 => div {.border-radius;}*/
+.border-radius(@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+/* 隐藏 => pre { .wrap } */
+.wrap () {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 阴影 */
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+
+/*@base-url: "http://assets.fnord.com";*/
+/*background-image: url("@{base-url}/images/bg.png");*/
+
+
+/*
+	头：header
+	内容：content/container
+	尾：footer
+	导航：nav
+	侧栏：sidebar
+	栏目：column
+	页面外围控制整体佈局宽度：wrapper
+	左右中：left right center
+	登录条：loginbar
+	标志：logo
+	广告：banner
+	页面主体：main
+	热点：hot
+	新闻：news
+	下载：download
+	子导航：subnav
+	菜单：menu
+	子菜单：submenu
+	搜索：search
+	友情链接：friendlink
+	页脚：footer
+	版权：copyright
+	滚动：scroll
+	内容：content
+	标签：tags
+	文章列表：list
+	提示信息：msg
+	小技巧：tips
+	栏目标题：title
+	加入：joinus
+	指南：guide
+	服务：service
+	注册：regsiter
+	状态：status
+	投票：vote
+	合作伙伴：partner
+*/
+
+/*
+lighten(@color, 10%);     // return a color which is 10% *lighter* than @color
+darken(@color, 10%);      // return a color which is 10% *darker* than @color
+
+saturate(@color, 10%);    // return a color 10% *more* saturated than @color
+desaturate(@color, 10%);  // return a color 10% *less* saturated than @color
+
+fadein(@color, 10%);      // return a color 10% *less* transparent than @color
+fadeout(@color, 10%);     // return a color 10% *more* transparent than @color
+fade(@color, 50%);        // return @color with 50% transparency
+
+spin(@color, 10);         // return a color with a 10 degree larger in hue than @color
+spin(@color, -10);        // return a color with a 10 degree smaller hue than @color
+
+mix(@color1, @color2);    // return a mix of @color1 and @color2*/

@@ -1,0 +1,30 @@
+{
+  "entry": "src/index.js",
+  "theme": {
+    "@primary-color": "#000"
+  },
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime"
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime"
+      ]
+    },
+    "extraBabelPlugins": [
+     "transform-runtime",
+      ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "true" }]
+   ]
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://jsonplaceholder.typicode.com/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    }
+  }
+}

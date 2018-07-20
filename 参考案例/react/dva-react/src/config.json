@@ -1,0 +1,33 @@
+{
+  "en": {
+    "wave":{
+        "name":"Order overview",
+    }
+  },
+  "zh": {
+    "wave":{
+        name:"电波次序总览",
+        name:"频段范围",
+        name:"频段名称",
+        name:"合法正常信号",
+        name:"合法违规信号",
+        name:"已知信号",
+        name:"非法信号",
+        name:"不明信号",
+        name:"重点监测",
+        name:"实时告警未确认",
+        name:"实时告警已确认",
+        name:"信号智能识别",
+        name:"频率",
+        name:"首次出现时间",
+        name:"最后出现时间",
+        name:"监测站",
+        name:"状态",
+        name:"告警内容",
+        name:"描述",
+        name:"信号监测",
+        name:"确认",
+        name:"刷新",
+    }
+  }
+}

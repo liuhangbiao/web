@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>彩字特效生成工具</title>
+	<script>
+function randomise(){
+var words=document.myform.wordlist.value;
+var spacer="";
+words=words.split(document.myform.randomiseby.options[document.myform.randomiseby.selectedIndex].value)
+document.myform.code.value="";
+var colourscheme=new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F")
+for(var time=0;time<=(words.length-1);time++){
+if(words[time]==" "){document.myform.code.value+=" "}
+if(words[time]!=" "){
+spacer=document.myform.randomiseby.options[document.myform.randomiseby.selectedIndex].value;
+var c1=Math.round(Math.random()*(colourscheme.length-1));
+var c2=Math.round(Math.random()*(colourscheme.length-1));
+var c3=Math.round(Math.random()*(colourscheme.length-1));
+var c4=Math.round(Math.random()*(colourscheme.length-1));
+var c5=Math.round(Math.random()*(colourscheme.length-1));
+var c6=Math.round(Math.random()*(colourscheme.length-1));
+var size=1+Math.round(Math.random()*6);
+document.myform.code.value+="<font color=\"#"+colourscheme[c1]+colourscheme[c2]+colourscheme[c3]+colourscheme[c4]+colourscheme[c5]+colourscheme[c6]+"\" size=\""+size+"\">"+words[time]+"</font>"+spacer+"";
+}
+}
+looks_like.innerHTML=document.myform.code.value;
+}
+</script>
+</head>
+<body>
+	 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="content" > 
+    <tr> 
+      <td valign="top" class="ad"><script>ad()</script></td> 
+    </tr>
+    <tr>
+      <td valign="top" class="area"><form name=myform action=javascript:randomise()> 
+          <input onfocus='this.value=""' style="width:98%" value=在这里输入文字 name=wordlist> 
+          <br> 
+          <br> 
+          <select name=randomiseby> 
+            <option value="" selected>区分字母</option> 
+            <option value="">区分单词</option> 
+          </select> 
+          <input type=submit value=生成HTML代码> 
+          <span style="display:inline-block">（可多次点击生成，直到您满意）</span><br><br> 
+          <span id=looks_like></span><br> 
+          <textarea name=code style="width:98%; height:200px; padding:0px; border:2px #ccc solid; font-size:12px; "></textarea> 
+          <div style="width:98%; background-color:#CCCCCC; ">
+          <input onclick='code.select();document.execCommand("Copy")' type=button value=复制代码 name=Submit> 
+          <input type=reset value=清除代码 name=reset></div> 
+        </form><br>
+        <div>彩字特效生成工具可随机改变文字的颜色和字号，是一个有趣的网页应用。它生成HTML代码，可运用到支持此代码的论坛、留言板、博客等场合。</div></td> 
+    </tr> 
+  </table> 
+</body>
+</html>

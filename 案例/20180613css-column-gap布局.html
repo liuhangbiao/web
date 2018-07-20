@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:400,800);
+body {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 90%;
+		padding: 0 10px;
+		margin: 0;
+}
+.panel {
+		opacity: .84;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		box-shadow: 0 0 10px black;
+		z-index: 2;
+		background: rgba(255, 255, 255, .93);
+		width: 100%;
+		padding: 6px;
+		transition: all .4s .2s;
+}
+.panel:hover {
+		opacity: 1;
+		bottom: 0;
+		transition: all .4s .1s;
+}
+.panel h3 {
+		color: #009;
+		margin: 0 0 5px;
+		display: inline-block;
+		border-right: solid 2px #00a;
+		padding-right: 5px;
+}
+.panel label,
+.css {
+		font-family: 'Inconsolata', monospace;
+}
+.output {
+	column-rule: 1px solid #ccc;
+		column-fill: auto;
+		column-count: 6;
+		font-size: 80%;
+		column-width: auto;
+		column-gap: 2em;
+		height: 400px;
+}
+.output img {
+		width: 80%;
+		max-height: 100px;
+		margin: 10px 20% 5px 0%;
+		max-width: 400px;
+}
+.header:first-letter {
+		text-transform: uppercase;
+}
+.header {
+		margin-top: 0;}
+pre {
+		font-weight: bold;
+		font-size: 12pt;
+}
+.css {
+		display: inline;
+	font-size: smaller;
+}
+.css span {
+		padding-right: .5em;
+		font-weight: normal;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #222;
+}
+.title * {
+display: inline-block;
+	height: .25em;
+}
+.title small {
+	margin-left: 1em;
+}
+	</style>
+<script src="../tool/js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+	<div class="panel"><h3>Playing with CSS columns</h3>
+		<label>column-count</label>
+		<input type="range" min="1" max="15" class="updater" data-change="column-count" value="6" />
+		<label>column-gap </label>
+		<input type="range" min="0" max="40" step=".1" class="updater" data-change="column-gap" value="22" />
+		<select class="updater column-gap-unit" data-change="column-gap">
+				<option>em</option>
+				<option>mm</option>
+				<option>vw</option>
+				<option selected="selected">px</option>
+		</select>
+		<label>column-rule-width</label>
+		<input type="range" min="0" max="40" class="updater" data-change="column-rule-width" value="3" />
+		<select class="updater column-rule-width-unit" data-change="column-rule-width">
+				<option>em</option>
+				<option>mm</option>
+				<option>vw</option>
+				<option selected="selected">px</option>
+		</select>
+		<label>column-rule-style</label>
+		<select class="updater" data-change="column-rule-style">
+				<option>dashed</option>
+				<option selected="selected">double</option>
+				<option>dotted</option>
+				<option>groove</option>
+				<option>solid</option>
+		</select>
+			<label>column-break-before</label>
+		<select class="updater" data-target=".header" data-change="column-break-before">
+				<option>auto</option>
+				<option selected="selected">initial</option>
+				<option>always</option>
+				<option>avoid</option>
+				<option>left</option>
+				<option>right</option>
+			<option>recto</option>
+		</select>
+			<select class="dummyImageProvider">
+				<option value="http://lorempixel.com/%w%/%h%">lorempixel.com</option>
+				<option value="http://dummyimage.com/%w%x%h%">dummyimage.com</option>
+				<option value="http://lorempizza.com/%w%x%h%">lorempizza.com</option>
+								<option value="http://placekitten.com/%w%/%h%">placekitten.com</option>
+				<option selected="selected" value="http://placebeyonce.com/%w%-%h%">Boyonce</option>
+				<option  value="http://placebeard.it/%w%/%h%/notag">placebeard.it</option>
+		</select>
+</div>
+<div class="title"><h1>CSS based columns </h1><small>P.s.: You may edit the dummy content</small></div>
+		<pre>CSS:	<div class="css"></div></pre>
+<div class="output" contenteditable="true">
+</div>
+<!-- UNDER CONSTRUNCTION START -->
+<div id="banner"><a href="">Updated 11/9/15</a></div>
+<style type="text/css">
+/* RELATED TO UNDER CONSTRUCTION ONLY */
+#banner{
+      height: 149px;
+			width: 149px;
+			overflow:hidden;
+			padding: 0;
+			margin: 0;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+#banner a{
+	display: block;
+	width: 200px;
+	font-size: 14px;
+	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", 
+		"Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, 
+		Geneva, "Helvetica Neue", Helvetica, Arial, sans serif;
+	background-color: #333;
+	color: #FFF;
+	word-spacing: 2px;
+	text-decoration: none;
+	padding: 5px 15px 5px 25px;
+	position:relative;
+	left: 20px;
+	top: -37px;
+	text-align: center;
+	-moz-transform-origin: 0 0 ;
+	-moz-transform:rotate(45deg);
+	-moz-box-shadow:    1px 1px 5px 1px #666;
+	-webkit-transform-origin: 0 0 ;	
+	-webkit-transform:rotate(45deg);
+	-webkit-box-shadow: 1px 1px 5px 1px #666;
+	-ms-transform-origin: 0 0 ;	
+	-ms-transform:rotate(45deg);
+	-ms-box-shadow: 1px 1px 5px 1px #666;
+	transform-origin: 0 0 ;	
+	transform:rotate(45deg);
+	box-shadow: 1px 1px 5px 1px #666;
+	background-image: linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -o-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -moz-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -webkit-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -ms-linear-gradient(bottom, #000000 3%, #666666 5%, #000000 7%, #000000 93%, #666666 95%, #000000 97%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.03, #000000),
+		color-stop(0.05, #666666),
+		color-stop(0.07, #000000),
+		color-stop(0.93, #000000),
+		color-stop(0.95, #666666),
+		color-stop(0.97, #000000)
+	);	
+}
+</style>
+<!-- UNDER CONSTRUNCTION END -->
+<script>
+	var dummyImageProvider = "";
+$(function() {
+		getBaconIpsum();
+		dummyImageProvider = $(".dummyImageProvider").val();
+		$(".dummyImageProvider").on("change", function() {
+				dummyImageProvider = $(".dummyImageProvider").val();
+getBaconIpsum();
+		});
+		$(".panel").on("change touchend touchstart", setValues);
+		setValues();
+});
+function setValues() {
+		var css = "";
+		$(".updater").each(function() {
+				var $this = $(this);
+				var property = $this.data("change");
+				if (typeof property !== "undefined") {
+						var target = $this.data("target") || ".output";
+						var unit = $("." + property + "-unit").val() || "";
+						var prop = PrefixFree.prefixProperty(property);
+						if (this.value != unit) {
+								var val = this.value + unit;
+								css += "<span>" + prop + ": " + val + ";</span>";
+								$(target).css(prop, val);
+						}
+				}
+		});
+		$(".css").html(css);
+}
+function getBaconIpsum() {
+		$.getJSON('https://baconipsum.com/api/?callback=?', {
+						'type': ((Math.random() > .5) ? 'meat-and-filler' : 'all-meat'),
+						'start-with-lorem': '1',
+						'paras': '15'
+				},
+				function(baconGoodness) {
+						if (baconGoodness && baconGoodness.length > 0) {
+								$(".output").html('');
+								for (var i = 0; i < baconGoodness.length; i++) {
+										var sHeader = "";
+										if (Math.random() > .4 || i === 0) {
+												var htype = parseInt(Math.random() * 4) + 1;
+												var header = baconGoodness[i].split(" ");
+												var noOfWords = parseInt(Math.random() * 10) + 2;
+												var wStart = parseInt(Math.random() * (header.length - noOfWords));
+												sHeader = "<h" + htype + " class=\"header\">";
+												for (var ii = wStart; ii < wStart + noOfWords; ii++) {
+														sHeader += header[ii].replace(/[\.,]/ig, "") + " ";
+												};
+												sHeader += "</h" + htype + ">";
+										}
+										var text = baconGoodness[i].split(" ");
+										text = addImage(text).join(" ");
+										$(".output").append(sHeader + '<p>' + text + '</p>');
+								}
+						}
+				});
+}
+function addImage(arr) {
+		var width = parseInt(Math.random() * 6) * 40 + 80;
+		var height = parseInt(Math.random() * 6) * 40 + 40;
+	var errSrc = "http://dummyimage.com/"+width+"/"+height+"/";
+	var src = ("<img src='"+dummyImageProvider+"' style=\"min-width: %w%px; min-height: %h%px\" onerror=\"src=\'"+errSrc+"\'\" />").replace(/%w%/g, width).replace(/%h%/g, height);
+		arr.splice(Math.random() * arr.length, 0, src);
+		return arr;
+}
+</script>
+</body>
+</html>

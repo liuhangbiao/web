@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">  
+  <head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <title>新闻滚动</title>
+    <style>
+        *{margin:0px;padding:0px}   
+    </style>
+
+  </head>  
+  <body>  
+    <div style="height:100px"></div>
+
+   <div id="marquee" style="overflow:hidden;height:120px;width:220px;margin-left:20px;">
+      <div id="marqueecont">
+       <ul style="margin:0px;list-style:none;">
+        <li>标题标题标题标题标题标题1</li>
+        <li>标题标题标题标题标题标题2</li>
+        <li>标题标题标题标题标题标题3</li>
+        <li>标题标题标题标题标题标题4</li>
+        <li>标题标题标题标题标题标题5</li>
+        <li>标题标题标题标题标题标题6</li>
+        <li>标题标题标题标题标题标题7</li>
+        <li>标题标题标题标题标题标题8</li>
+        <li>标题标题标题标题标题标题9</li>
+        
+      </ul>
+      </div>
+          <div id='marqueecont2'></div>
+      </div>
+        
+     <script>
+         var marquee = document.getElementById('marquee');
+         var marqueecont = document.getElementById('marqueecont');
+         var marqueecont2 = document.getElementById('marqueecont2');
+
+         MarqTop(marquee,marqueecont,marqueecont2,30);
+
+          function MarqTop(marquee,marqueecont,marqueecont2,speed){
+            marqueecont2.innerHTML=marqueecont.innerHTML;
+            
+            // 用这个函数这个滚动不连续
+            function Marquee(){
+            if(marqueecont.offsetTop<=marquee.scrollTop)
+               marquee.scrollTop-=marqueecont.offsetHeight;
+            else{
+              marquee.scrollTop++;
+              }
+            }
+            
+            // 这个滚动是连续的
+            /*function Marquee(){ 
+            if(marquee.scrollTop>=marqueecont.offsetHeight){
+               marquee.scrollTop=0; 
+            }else{
+               marquee.scrollTop++;
+              }
+            }*/
+            var MyMar=setInterval(Marquee,speed);
+            marquee.onmouseover=function() {clearInterval(MyMar);}
+            marquee.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+          }
+
+       </script>  
+  </body>  
+</html>  

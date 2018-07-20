@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>svg 连续循环动画</title>
+	<style type="text/css">
+		html,body,svg{padding: 0;margin: 0;width: 100%;height: 100%}
+	</style>
+</head>
+<body>
+	<svg viewBox="-400 -400 800 800">
+		<rect x="0" y="0" width="100" height="100" fill="red">
+			<!-- 变换动画 -->
+			<animate
+				id="gor"
+				attributeType="XML"
+				attributeName="x"
+				begin="0;gol.end +1s"
+				from="100"
+				to="500"
+				dur="1s"
+				fill="freeze">
+			</animate>
+			<animate
+				id="gol"
+				attributeType="XML"
+				attributeName="x"
+				begin="gor.end"
+				from="500"
+				to="100"
+				dur="1s"
+				fill="freeze">
+			</animate>
+			<animate
+				id="gor"
+				attributeType="XML"
+				attributeName="fill"
+				from="yellow"
+				to="red"
+				dur="3s"
+				fill="freeze"
+				repeatCount="indefinite">
+			</animate>
+			<!-- 旋转动画 animateTransform不能同时用两个-->
+		<!-- 	<animateTransform id="rotate"
+				attributeName="transform"
+				attributeType="XML"
+				type="rotate"
+				from="0"
+				to="360"
+				dur="3s"
+				>
+			</animateTransform> -->
+			<!-- <animateTransform id="scale"
+				attributeName="transform"
+				attributeType="XML"
+				type="scale"
+				from="1"
+				to="2"
+				dur="3s"
+				fill="freeze"
+				>
+			</animateTransform> -->
+		</rect>
+		<rect x="250" y="250" width="50" height="50" fill="lime">
+      <animateTransform id="rotate"
+               attributeType="XML"
+               attributeName="transform"
+               type="rotate"
+               from="0"
+               to="360"
+               dur="1s"
+               repeatCount="indefinite">
+      </animateTransform>
+      <animateTransform id="scale"
+               attributeType="XML"
+               attributeName="transform"
+               type="scale"
+               from=".1"
+               to="2"
+               dur="1s"
+               additive="sum"
+               repeatCount="indefinite">
+      </animateTransform>
+    </rect>
+	</svg>
+
+	 <svg viewBox="-400 -400 800 800">
+    <rect x="-25" y="-25" width="50" height="50" fill="rgba(0, 255, 255, .6)">
+    		<!-- <animateMotion
+    			path="M 0 0L 100 100A 200 200 0 1 00 -100"
+    			dur="3s"
+    			rotate="auto">
+    		</animateMotion> -->
+      <animateMotion
+                     dur="1s"
+                     rotate="auto">
+        <mpath xlink:href="#motionpath"></mpath>
+      </animateMotion>
+    </rect>
+    <path id="motionpath" d="M 0 0 L 100 100 A 200 200 0 1 0 0 -100" stroke="gray" fill="none"></path>
+  </svg>
+</body>
+</html>

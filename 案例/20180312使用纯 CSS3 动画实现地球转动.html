@@ -1,0 +1,63 @@
+<!-- <!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>旋转</title>
+<style>
+* {margin:0; padding:0; border:0;}
+div {width:200px; height:200px; margin-left:100px; margin-top:-100px;}
+img {width:200px; height:200px; border-radius:100px; animation:myfirst 5s linear infinite; -webkit-animation:myfirst 5s linear infinite; animation-play-state:running; -webkit-animation-play-state:running;}
+img:hover {animation-play-state:paused; -webkit-animation-play-state:paused;}
+
+@keyframes myfirst {0% {transform:rotate(0deg);} 100% {transform:rotate(360deg);}}
+@-webkit-keyframes myfirst {0% {transform:rotate(0deg);} 100% {transform:rotate(360deg);}}
+</style>
+</head>
+
+<body>
+<div><img src="20180312/earth.jpg"/><div>
+</body>
+</html> -->
+
+
+<!doctype html>  
+<html>  
+<head>  
+<meta charset="utf-8">  
+<title>旋转</title>  
+<style>  
+* {margin:0; padding:0; border:0;}  
+div {width:200px; height:200px; margin-left:100px; margin-top:-100px;}  
+img {width:200px; height:200px; border-radius:100px;}  
+</style>  
+  
+<script>  
+window.onload = function(){  
+    var rotateImg = function(){  
+        var img = document.getElementsByTagName("img")[0];  
+        var degree = 0;  
+        return function(){  
+            degree += 1;  
+            if(degree > 360){  
+                degree -= 360;  
+            }  
+            img.style.transform = "rotate(" + degree + "deg)";  
+        }  
+    }();  
+      
+    var startRotate = setInterval(rotateImg, 50);  
+      
+    document.getElementsByTagName("img").item(0).onmouseover = function () {  
+        clearInterval(startRotate);  
+    }  
+    document.getElementsByTagName("img").item(0).onmouseout = function() {  
+        startRotate = setInterval(rotateImg, 50);  
+    }  
+}  
+</script>  
+</head>  
+  
+<body>  
+<div><img src="20180312/earth.jpg"/><div>  
+</body>  
+</html>  

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                彩虹字生成器 平滑颜色过渡彩虹文字生成工具
+            </title>
+            <script>
+                function wr_style(num)
+{
+	for(var i=1;i<6;i++){
+		document.getElementById("win_rainbow_style"+i).checked=false;
+	}
+	document.getElementById("win_rainbow_style"+num).checked=true;
+}
+            </script>
+        </meta>
+    </head>
+    <body>
+        <div class="main">
+            <div class="content">
+                <div class="ad">
+                    <script>
+                        ad()
+                    </script>
+                </div>
+                <div class="area">
+                    <textarea id="win_rainbow_text" name="win_rainbow_text" onkeyup="set_rainbow()" style="width:98%;height:200px ">
+                        在这里输入文字，然后点击“生成彩虹字代码”按钮，下方将显示效果预览，同时代码区生成对应的UBB代码。
+                    </textarea>
+                    <table border="0" cellpadding="0" cellspacing="0" style="text-align:left; font-size:15px" width="100%">
+                        <tbody>
+                            <tr>
+                                <td align="left" height="20" width="50%">
+                                    <label>
+                                        <input checked="" id="win_rainbow_style1" name="win_rainbow_style1" onclick="wr_style(1);" type="radio" value="radiobutton">
+                                            <font color="#ffb400">
+                                                普
+                                            </font>
+                                            <font color="#fff000">
+                                                通
+                                            </font>
+                                            <font color="#c3ff00">
+                                                的
+                                            </font>
+                                            <font color="#87ff00">
+                                                彩
+                                            </font>
+                                            <font color="#4bff00">
+                                                虹
+                                            </font>
+                                            <font color="#0fff00">
+                                                字
+                                            </font>
+                                            <font color="#00ff3c">
+                                                效
+                                            </font>
+                                            <font color="#00ff78">
+                                                果
+                                            </font>
+                                        </input>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input id="win_rainbow_style2" name="win_rainbow_style2" onclick="wr_style(2);" type="radio" value="radiobutton">
+                                            <font color="#4c4c4c">
+                                                黑
+                                            </font>
+                                            <font color="#666666">
+                                                白
+                                            </font>
+                                            <font color="#7f7f7f">
+                                                的
+                                            </font>
+                                            <font color="#999999">
+                                                彩
+                                            </font>
+                                            <font color="#b2b2b2">
+                                                虹
+                                            </font>
+                                            <font color="#cccccc">
+                                                字
+                                            </font>
+                                            <font color="#e5e5e5">
+                                                效
+                                            </font>
+                                            <font color="#ffffff">
+                                                果
+                                            </font>
+                                        </input>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" height="20" width="50%">
+                                    <label>
+                                        <input id="win_rainbow_style3" name="win_rainbow_style3" onclick="wr_style(3);" type="radio" value="radiobutton">
+                                            <font color="#4c1d24">
+                                                黑
+                                            </font>
+                                            <font color="#661d24">
+                                                红
+                                            </font>
+                                            <font color="#7f1d24">
+                                                的
+                                            </font>
+                                            <font color="#991d24">
+                                                彩
+                                            </font>
+                                            <font color="#b21d24">
+                                                虹
+                                            </font>
+                                            <font color="#cc1d24">
+                                                字
+                                            </font>
+                                            <font color="#e51d24">
+                                                效
+                                            </font>
+                                            <font color="#ff1d24">
+                                                果
+                                            </font>
+                                        </input>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input id="win_rainbow_style4" name="win_rainbow_style4" onclick="wr_style(4);" type="radio" value="radiobutton">
+                                            <font color="#00aeb2">
+                                                蓝
+                                            </font>
+                                            <font color="#00ae99">
+                                                绿
+                                            </font>
+                                            <font color="#00ae7f">
+                                                的
+                                            </font>
+                                            <font color="#00ae66">
+                                                彩
+                                            </font>
+                                            <font color="#00ae4c">
+                                                虹
+                                            </font>
+                                            <font color="#00ae33">
+                                                字
+                                            </font>
+                                            <font color="#00ae19">
+                                                效
+                                            </font>
+                                            <font color="#00ae00">
+                                                果
+                                            </font>
+                                        </input>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" height="40">
+                                    <label>
+                                        <input id="win_rainbow_style5" name="win_rainbow_style5" onclick="wr_style(5);" type="radio" value="radiobutton">
+                                            自定义彩虹字
+                                        </input>
+                                    </label>
+                                    <br>
+                                        输入起始色：
+                                        <input id="win_rainbow_A" name="win_rainbow_A" style="border: #9e9e9e 1px solid; width: 60px;" value="0000FF">
+                                            输入结尾色：
+                                            <input id="win_rainbow_B" name="win_rainbow_B" style="border: #9e9e9e 1px solid; width: 60px;" value="FF0000">
+                                                (16进制颜色值)
+                                            </input>
+                                        </input>
+                                    </br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" colspan="2" height="40" valign="bottom">
+                                    <input name="Submit2" onclick="set_rainbow();" type="submit" value="生成彩虹字代码">
+                                    </input>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        效果预览：
+                        <span style="float:right ">
+                            <span style="display:inline-block">
+                                预览背景
+                                <div onmousemove="pr.style.backgroundColor='#FFFFFF';pr.style.color='#666666';" style="background-color: #fff; height:16px; width:20px; border:1px #ccc solid; display:inline-block" title="白色背景">
+                                </div>
+                                <div onmousemove="pr.style.backgroundColor='#000000';pr.style.color='#929292';" style="background-color: #000; height:16px; width:20px; border:1px #ccc solid; display:inline-block" title="黑色背景">
+                                </div>
+                            </span>
+                        </span>
+                    </div>
+                    <div id="pr" style="background-color:#fff;border:1px #ccc solid;padding:5px;min-height:25px;">
+                    </div>
+                    <br>
+                        <div>
+                            UBB代码：
+                            <span style="float:right ">
+                                <input name="button" onclick="main_editer.select()" type="button" value="全选代码">
+                                    <input onclick="main_editer.value=''" type="button" value="清除"/>
+                                </input>
+                            </span>
+                        </div>
+                        <textarea id="main_editer" name="main_editer" style="width:98%; height:200px; ">
+                        </textarea>
+                        <div style="margin-top:15px; ">
+                            彩虹文字生成工具是一个文字颜色平滑过渡的UBB代码生成器。所谓UBB代码，是指论坛中用于替代HTML代码的安全代码。因为UBB代码结构简单，功能很少，相对于HTML代码来说，可以避免由于使用HTML代码可能带来的不良信息。所以UBB代码在论坛、留言板等互动类网页中广泛采用。
+                        </div>
+                    </br>
+                </div>
+            </div>
+            <script>
+                function set_rainbow(){
+	var wr_text = win_rainbow_text.value;
+	var wr_code,wr_rgb,r,g,b,i,j,istep
+	var wr_rgb1,wr_rgb2,r1,g1,b1,r2,g2,b2
+	r1=g1=b1=r2=g2=b2=0;
+	r=0;g=0;b=0;istep=0;
+	wr_code='';
+	if(win_rainbow_style1.checked){
+		istep=40;
+		r=255;i=1;j=0;
+		do{
+			if(wr_text.charCodeAt(j) != 32){
+				if(g+istep<256){
+					if(i==1)g+=istep;
+				}else if(i==1){
+					i=2;g=255;
+				}
+				if(r-istep>-1){
+					if(i==2)r-=istep;
+				}else if(i==2){
+					i=3;r=0;
+				}
+				if(b+istep<256){
+					if(i==3)b+=istep;
+				}else if(i==3){
+					i=4;b=255;
+				}
+				if(g-istep>-1){
+					if(i==4)g-=istep;
+				}else if(i==4){
+					i=5;g=0;
+				}
+				if(r+istep<256){
+					if(i==5)r+=istep;
+				}else if(i==5){
+					i=6;r=255;
+				}
+				if(b-istep>-1){
+					if(i==6)b-=istep;
+				}else if(i==6){
+					i=1;b=0;
+				}
+				wr_rgb='';
+				wr_rgb+=parseInt(r).toString(16).length==1 ? 0+parseInt(r).toString(16) : parseInt(r).toString(16);
+				wr_rgb+=parseInt(g).toString(16).length==1 ? 0+parseInt(g).toString(16) : parseInt(g).toString(16);
+				wr_rgb+=parseInt(b).toString(16).length==1 ? 0+parseInt(b).toString(16) : parseInt(b).toString(16);
+				wr_rgb=wr_rgb.toUpperCase();
+				wr_code+='[ftc='+ wr_rgb +']'+wr_text.charAt(j)+'[/ft]';
+			}else{
+				wr_code+=wr_text.charAt(j);
+			}
+			j++;
+		}while (j<wr_text.length);
+	}else if(win_rainbow_style2.checked){
+		istep=255/wr_text.length;
+		for(i=1;i<wr_text.length+1;i++){
+			if(wr_text.charCodeAt(i-1)!=32){
+				r+=istep;
+				g+=istep;
+				b+=istep;
+				if(r>255) r=255;
+				if(g>255) g=255;
+				if(b>255) b=255;
+				wr_rgb='';
+				wr_rgb+=parseInt(r).toString(16).length==1 ? 0+parseInt(r).toString(16) : parseInt(r).toString(16);
+				wr_rgb+=parseInt(g).toString(16).length==1 ? 0+parseInt(g).toString(16) : parseInt(g).toString(16);
+				wr_rgb+=parseInt(b).toString(16).length==1 ? 0+parseInt(b).toString(16) : parseInt(b).toString(16);
+				wr_rgb=wr_rgb.toUpperCase();
+				wr_code+='[ftc='+ wr_rgb +']'+wr_text.charAt(i-1)+'[/ft]';
+			}else{
+				wr_code+=wr_text.charAt(i-1);
+			}
+		}
+	}else if(win_rainbow_style3.checked){
+		istep=255/wr_text.length;
+		for(i=1;i<wr_text.length+1;i++){
+			if(wr_text.charCodeAt(i-1)!=32){
+				r+=istep;
+				g=29;
+				b=36;
+				if(r>255) r=255;
+				if(g>255) g=255;
+				if(b>255) b=255;
+				wr_rgb='';
+				wr_rgb+=parseInt(r).toString(16).length==1 ? 0+parseInt(r).toString(16) : parseInt(r).toString(16);
+				wr_rgb+=parseInt(g).toString(16).length==1 ? 0+parseInt(g).toString(16) : parseInt(g).toString(16);
+				wr_rgb+=parseInt(b).toString(16).length==1 ? 0+parseInt(b).toString(16) : parseInt(b).toString(16);
+				wr_rgb=wr_rgb.toUpperCase();
+				wr_code+='[ftc='+ wr_rgb +']'+wr_text.charAt(i-1)+'[/ft]';
+			}else{
+				wr_code+=wr_text.charAt(i-1);
+			}
+		}
+	}else if(win_rainbow_style4.checked){
+		istep=255/wr_text.length;
+		for(i=1;i<wr_text.length+1;i++){
+			if(wr_text.charCodeAt(i-1)!=32){
+				r=0;
+				g=174;
+				b+=istep;
+				if(r>255) r=255;
+				if(g>255) g=255;
+				if(b>255) b=255;
+				wr_rgb='';
+				wr_rgb+=parseInt(r).toString(16).length==1 ? 0+parseInt(r).toString(16) : parseInt(r).toString(16);
+				wr_rgb+=parseInt(g).toString(16).length==1 ? 0+parseInt(g).toString(16) : parseInt(g).toString(16);
+				wr_rgb+=parseInt(255-b).toString(16).length==1 ? 0+parseInt(255-b).toString(16) : parseInt(255-b).toString(16);
+				wr_rgb=wr_rgb.toUpperCase();
+				wr_code+='[ftc='+ wr_rgb +']'+wr_text.charAt(i-1)+'[/ft]';
+			}else{
+				wr_code+=wr_text.charAt(i-1);
+			}
+		}
+	}else if(win_rainbow_style5.checked){
+		if(win_rainbow_A.value.length!=6||win_rainbow_B.value.length!=6){
+			alert('颜色代码错误！');
+			return;
+		}else{
+			wr_rgb1=win_rainbow_A.value;
+			wr_rgb2=win_rainbow_B.value;
+			r1=parseInt("0x"+String(wr_rgb1).substr(0,2));
+			g1=parseInt("0x"+String(wr_rgb1).substr(2,2));
+			b1=parseInt("0x"+String(wr_rgb1).substr(4,2));
+			r2=parseInt("0x"+String(wr_rgb2).substr(0,2));
+			g2=parseInt("0x"+String(wr_rgb2).substr(2,2));
+			b2=parseInt("0x"+String(wr_rgb2).substr(4,2));;
+			if(isNaN(r1)) r1=0
+			if(isNaN(g1)) g1=0
+			if(isNaN(b1)) b1=0
+			if(isNaN(r2)) r2=0
+			if(isNaN(g2)) g2=0
+			if(isNaN(b2)) b2=0
+			istep=255/wr_text.length;
+			for(i=1;i<wr_text.length+1;i++){
+				if(wr_text.charCodeAt(i-1)!=32){
+					wr_rgb='';
+					wr_rgb+=parseInt(r1).toString(16).length==1 ? 0+parseInt(r1).toString(16) : parseInt(r1).toString(16);
+					wr_rgb+=parseInt(g1).toString(16).length==1 ? 0+parseInt(g1).toString(16) : parseInt(g1).toString(16);
+					wr_rgb+=parseInt(b1).toString(16).length==1 ? 0+parseInt(b1).toString(16) : parseInt(b1).toString(16);
+					wr_rgb=wr_rgb.toUpperCase();
+					wr_code+='[ftc='+ wr_rgb +']'+wr_text.charAt(i-1)+'[/ft]';
+					r1>r2?r1-=istep:r1+=istep;
+					g1>g2?g1-=istep:g1+=istep;
+					b1>b2?b1-=istep:b1+=istep;
+					if(r1>255) r1=255;
+					if(r1<0) r1=0;
+					if(g1>255) g1=255;
+					if(g1<0) g1=0;
+					if(b1>255) b1=255;
+					if(b1<0) b1=0;
+				}else{
+				wr_code+=wr_text.charAt(i-1);
+				}
+			}
+		}
+	}
+	main_editer.value = wr_code;
+	wr_code = wr_code.replace(/\[ftc=/g,'<font color="#');
+	wr_code = wr_code.replace(/\[\/ft]/g,"<\/font>");
+	wr_code = wr_code.replace(/\]/g,'">');
+	pr.innerHTML = wr_code;
+}
+            </script>
+        </div>
+    </body>
+</html>
